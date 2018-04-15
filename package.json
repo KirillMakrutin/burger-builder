@@ -2,12 +2,12 @@
   "name": "burger-builder",
   "version": "0.1.0",
   "private": true,
-         "lint-staged": {
-           "src/**/*.{js,jsx,json,css}": [
-             "prettier --single-quote --write",
-             "git add"
-           ]
-         },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
