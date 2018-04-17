@@ -1,8 +1,8 @@
 import React from 'react';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../Auxiliary/Auxiliary';
 import classes from './Layout.css';
-import Toolbar from '../navigation/Toolbar/Toolbar';
-import SideDrawer from '../navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../components/navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/navigation/SideDrawer/SideDrawer';
 
 class Layout extends React.Component {
   state = {
