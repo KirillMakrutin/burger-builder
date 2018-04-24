@@ -27,7 +27,7 @@ const Input = props => {
 
     case 'select':
       inputElement = (
-        <select className={classes.InputElement}>
+        <select className={classes.InputElement} value={props.value}>
           {props.config.options.map(option => (
             <option key={option.value} value={option.value}>
               {option.displayValue}
