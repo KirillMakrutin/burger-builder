@@ -90,7 +90,11 @@ class ContactData extends React.Component {
     }
   };
 
-  checkValidaty(value, rules) {
+  static checkValidaty(value, rules) {
+    if (!rules) {
+      return true;
+    }
+
     let isValid = true;
 
     if (rules.required) {
@@ -118,7 +122,6 @@ class ContactData extends React.Component {
       updatedFormElement.value,
       updatedFormElement.validation
     );
-    console.log(updatedFormElement.valid);
 
     updatedForm[inputIdentifier] = updatedFormElement;
     this.setState({ orderForm: updatedForm });
@@ -164,6 +167,8 @@ class ContactData extends React.Component {
         {formElementArray.map(element => (
           <Input
             key={element.id}
+            invalid={!element.config.valid}
+            shouldValidate={element.config.validation}
             elementType={element.config.elementType}
             config={element.config.config}
             value={element.config.value}
