@@ -97,7 +97,7 @@ class ContactData extends React.Component {
     }
   };
 
-  checkValidaty = (value, rules) => {
+  checkValidity = (value, rules) => {
     if (!rules) {
       return true;
     }
@@ -126,7 +126,7 @@ class ContactData extends React.Component {
     const updatedFormElement = { ...updatedForm[inputIdentifier] };
     updatedFormElement.value = event.target.value;
     updatedFormElement.touched = true;
-    updatedFormElement.valid = this.checkValidaty(
+    updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
