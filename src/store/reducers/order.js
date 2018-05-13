@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error
+        error: action.error
       };
 
     case actionTypes.PURCHASE_BUILDER_START:
