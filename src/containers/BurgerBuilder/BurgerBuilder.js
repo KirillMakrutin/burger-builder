@@ -55,21 +55,7 @@ class BurgerBuilder extends React.Component {
   };
 
   handlePurchaseContinue = () => {
-    const queryParams = [];
-    queryParams.push('price=' + this.props.totalPrice.toFixed(2));
-
-    for (let i in this.state.ingredients) {
-      queryParams.push(
-        encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i])
-      );
-    }
-    const queryString = queryParams.join('&');
-
-    const { history } = this.props;
-    history.push({
-      pathname: '/checkout',
-      search: '?' + queryString
-    });
+    this.props.history.push('/checkout');
   };
 
   render() {

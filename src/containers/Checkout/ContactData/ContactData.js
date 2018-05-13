@@ -4,6 +4,8 @@ import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/ui/Spinner/Spinner';
 import Input from '../../../components/ui/Input/Input';
+import { connect } from 'react-redux';
+import { RESET_INGREDIENTS } from '../../../store/actions';
 
 class ContactData extends React.Component {
   state = {
@@ -162,6 +164,7 @@ class ContactData extends React.Component {
       .post('/orders.json', order)
       .then(response => {
         this.setState({ loading: false });
+        this.props.onResetIngredients();
         this.props.history.push('/');
       })
       .catch(error => this.setState({ loading: false }));
@@ -209,4 +212,17 @@ class ContactData extends React.Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+  return {
+    ingredients: state.ingredients,
+    price: state.totalPrice
+  };
+};
+
+const mapDispatcherToProps = dispatch => {
+  return {
+    onResetIngredients: () => dispatch({ type: RESET_INGREDIENTS })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatcherToProps)(ContactData);
