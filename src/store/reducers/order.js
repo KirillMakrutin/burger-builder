@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   orders: [],
-  loading: false
+  loading: false,
+  purchased: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.PURCHASE_BUILDER_SUCCESS:
       const newOrder = {
         ...action.orderData,
-        id: action.orderId
+        id: action.orderId,
+        purchased: true
       };
       return {
         ...state,
@@ -29,6 +31,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+
+    case actionTypes.PURCHASE_INIT:
+      return {
+        ...state,
+        purchased: false
       };
 
     default:

@@ -5,7 +5,6 @@ import axios from '../../../axios-orders';
 import Spinner from '../../../components/ui/Spinner/Spinner';
 import Input from '../../../components/ui/Input/Input';
 import { connect } from 'react-redux';
-import { RESET_INGREDIENTS } from '../../../store/actions/actionTypes';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
 
