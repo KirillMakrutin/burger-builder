@@ -22,7 +22,7 @@ const authFail = error => {
   };
 };
 
-export const logOut = () => {
+export const logout = () => {
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -31,7 +31,7 @@ export const logOut = () => {
 const checkAuthTimeout = expirationTime => {
   return dispatch => {
     setTimeout(() => {
-      dispatch(logOut());
+      dispatch(logout());
     }, expirationTime * 1000);
   };
 };
