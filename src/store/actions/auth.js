@@ -24,7 +24,7 @@ const authFail = error => {
 
 export const logout = () => {
   localStorage.removeItem('token');
-  localStorage.removeItem('expirationTime');
+  localStorage.removeItem('expirationDate');
   localStorage.removeItem('userId');
 
   return {
@@ -100,7 +100,7 @@ export const authCheckState = () => {
         );
         dispatch(
           checkAuthTimeout(
-            expirationDate.getSeconds() - new Date().getSeconds()
+            (expirationDate.getTime() - new Date().getTime()) / 1000
           )
         );
       } else {
