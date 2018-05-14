@@ -35,6 +35,10 @@ function authSucceed(state, action) {
   });
 }
 
+function authLogout(state) {
+  return updateObject(state, initialState);
+}
+
 const auth = (state = initialState, action) => {
   switch (action.type) {
     case actionType.AUTH_START:
@@ -45,6 +49,9 @@ const auth = (state = initialState, action) => {
 
     case actionType.AUTH_SUCCESS:
       return authSucceed(state, action);
+
+    case actionType.AUTH_LOGOUT:
+      return authLogout(state);
 
     default:
       return state;
