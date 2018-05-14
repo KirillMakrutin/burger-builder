@@ -128,7 +128,7 @@ class Auth extends React.Component {
           <Button btnType="Success">
             {this.state.isSignUp ? 'SIGN UP' : 'SIGN IN'}
           </Button>
-          <hr />
+          <br />
           <Button btnType="Danger" clicked={this.handleSwitchAuthMode}>
             {this.state.isSignUp ? 'SWITCH TO SIGN IN' : 'SWITCH TO SIGN UP'}
           </Button>
