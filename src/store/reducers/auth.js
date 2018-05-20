@@ -26,8 +26,6 @@ function authFailed(state, action) {
 }
 
 function authSucceed(state, action) {
-  console.log(action.idToken, action.userId);
-
   return updateObject(state, {
     token: action.idToken,
     userId: action.userId,
