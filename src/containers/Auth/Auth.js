@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 import Spinner from '../../components/ui/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
-import { updateObject } from '../../shared/utility';
+import { updateObject, checkValidity } from '../../shared/utility';
 
 class Auth extends React.Component {
   state = {
@@ -43,28 +43,6 @@ class Auth extends React.Component {
     isSignUp: true
   };
 
-  checkValidity = (value, rules) => {
-    if (!rules) {
-      return true;
-    }
-
-    let isValid = true;
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.minlength) {
-      isValid = value.length >= rules.minlength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
-  };
-
   componentDidMount() {
     if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
       this.props.onSetAuthRedirectPath();
@@ -85,7 +63,7 @@ class Auth extends React.Component {
     const updatedControls = updateObject(this.state.controls, {
       [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
-        valid: this.checkValidity(
+        valid: checkValidity(
           event.target.value,
           this.state.controls[controlName].validation
         )
