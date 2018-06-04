@@ -1,13 +1,13 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-const authStart = () => {
+export const authStart = () => {
   return {
     type: actionTypes.AUTH_START
   };
 };
 
-const authSuccess = (idToken, userId) => {
+export const authSuccess = (idToken, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken: idToken,
@@ -15,7 +15,7 @@ const authSuccess = (idToken, userId) => {
   };
 };
 
-const authFail = error => {
+export const authFail = error => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error
@@ -34,7 +34,7 @@ export const logoutSucceed = () => {
   };
 };
 
-const checkAuthTimeout = expirationTime => {
+export const checkAuthTimeout = expirationTime => {
   return {
     type: actionTypes.AUTH_CHECK_TIMEOUT,
     expirationTime: expirationTime
@@ -42,37 +42,11 @@ const checkAuthTimeout = expirationTime => {
 };
 
 export const auth = (email, password, isSignUp) => {
-  return dispatch => {
-    dispatch(authStart());
-    const authData = {
-      email: email,
-      password: password,
-      returnSecureToken: true
-    };
-
-    let defaultUrl =
-      'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCYtexWtDh60B0OV4SuJ5GC-_SBePrMLhk';
-
-    if (!isSignUp) {
-      defaultUrl =
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCYtexWtDh60B0OV4SuJ5GC-_SBePrMLhk';
-    }
-
-    axios
-      .post(defaultUrl, authData)
-      .then(res => {
-        const expirationDate = new Date(
-          new Date().getTime() + res.data.expiresIn * 1000
-        );
-        localStorage.setItem('token', res.data.idToken);
-        localStorage.setItem('userId', res.data.localId);
-        localStorage.setItem('expirationDate', expirationDate);
-        dispatch(authSuccess(res.data.idToken, res.data.localId));
-        dispatch(checkAuthTimeout(res.data.expiresIn));
-      })
-      .catch(err => {
-        dispatch(authFail(err.response.data.error));
-      });
+  return {
+    type: actionTypes.AUTH_USER,
+    email: email,
+    password: password,
+    isSignUp: isSignUp
   };
 };
 
